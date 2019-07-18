@@ -3,27 +3,27 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import Icons from "react-native-vector-icons/Ionicons";
 
-class HomeScreen extends Component {
+class DashboardScreen extends Component {
   state = {};
   render() {
     return (
       <View>
-        <Text>This is Home</Text>
+        <Text>This is Dashboard</Text>
       </View>
     );
   }
 }
 
-const HomeStack = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
+const DashboardStack = createStackNavigator({
+  Dashboard: {
+    screen: DashboardScreen,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: "Home",
+        headerTitle: "Dashboard",
         headerBackTitle: null
       };
     }
   }
 });
 
-export default HomeStack;
+export default DashboardStack;

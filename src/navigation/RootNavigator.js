@@ -5,57 +5,78 @@ import {
   createStackNavigator,
   createBottomTabNavigator
 } from "react-navigation";
-import Home from "../screens/home/HomeScreen";
-import Orders from "../screens/home/orders/OrderScreen";
-import Profile from "../screens/home/profile/ProfileScreen";
-import SignUpScreen from "../screens/authentication/SignUpScreen";
-import LoginNavigator from "../screens/authentication/LoginNavigator";
-import OnBoardingScreen from "../screens/onboarding/OnBoardingScreen";
-import Products from "../screens/home/products/ProductsScreen";
+import DashboardStack from "screens/dashboard/Dashboard";
+import OrderStack from "screens/orders/OrderScreen";
+import SettingStack from "screens/settings/SettingScreen";
+import SignUpScreen from "screens/authentication/SignUpScreen";
+import LoginNavigator from "screens/authentication/LoginNavigator";
+import OnBoardingScreen from "screens/onboarding/OnBoardingScreen";
+import ProductStack from "screens/products/ProductsScreen";
+import WelcomeScreen from "screens/onboarding/WelcomeScreen";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const AppStack = createBottomTabNavigator(
   {
-    Home: {
-      screen: Home,
+    Dashboard: {
+      screen: DashboardStack,
       navigationOptions: {
-        tabBarLabel: "Home"
+        tabBarLabel: "Dashboard",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="home" color={tintColor} size={20} />
+        )
       }
     },
     Products: {
-      screen: Products
-    },
-    Orders: {
-      screen: Orders,
+      screen: ProductStack,
       navigationOptions: {
-        tabBarLabel: "Orders"
+        tabBarLabel: "Products",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="menu" color={tintColor} size={20} />
+        )
       }
     },
-    Profile: {
-      screen: Profile,
+    Orders: {
+      screen: OrderStack,
       navigationOptions: {
-        tabBarLabel: "Profile"
+        tabBarLabel: "Orders",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="shopping-cart" color={tintColor} size={20} />
+        )
+      }
+    },
+    Settings: {
+      screen: SettingStack,
+      navigationOptions: {
+        tabBarLabel: "Settings",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="settings" color={tintColor} size={20} />
+        )
       }
     }
   },
   {
     navigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state.routes[navigation.state.index];
-
       return {
-        header: null,
-        headerTitle: routeName,
-        resetOnBlur: true
+        // header: null,
+        headerTitle: routeName
+        // resetOnBlur: true
       };
     }
-  }
+  },
+  { headerMode: "screen" }
 );
 
 const AuthStack = createStackNavigator({
-  Login: {
-    screen: LoginNavigator,
+  Welcome: {
+    screen: WelcomeScreen,
     navigationOptions: {
       header: null
     }
+  },
+  Login: {
+    screen: LoginNavigator,
+    navigationOptions: {}
   },
   SignUp: {
     screen: SignUpScreen,

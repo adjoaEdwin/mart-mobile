@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import Spinner from "../../components/Spinner";
+import { Spinner } from "components";
 import AsyncStorage from "@react-native-community/async-storage";
 
 class AuthLoadingScreen extends Component {

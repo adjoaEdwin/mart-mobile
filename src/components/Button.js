@@ -1,23 +1,34 @@
 import React from "react";
-import { Button, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import colors from "styles/colors";
 
-const PrimaryBtn = ({ title, color, type, onPress }) => {
+const Button = ({ onPress, children }) => {
+  const { buttonStyle, textStyle } = styles;
+
   return (
-    <Button
-      onPress={onPress}
-      style={styles.container}
-      title={title}
-      color="#841584"
-      accessibilityLabel="Learn more about this purple button"
-    />
+    <TouchableOpacity style={buttonStyle} onPress={onPress}>
+      <Text style={textStyle}>{children}</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.primary
+  textStyle: {
+    color: colors.white,
+    alignSelf: "center",
+    fontSize: 16
+  },
+  buttonStyle: {
+    borderRadius: 5,
+    alignSelf: "stretch",
+    borderWidth: 1,
+    backgroundColor: colors.primary,
+    padding: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 20,
+    marginLeft: 20
   }
 });
 
-export default PrimaryBtn;
+export { Button };

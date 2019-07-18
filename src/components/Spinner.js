@@ -9,7 +9,7 @@ const Spinner = () => {
   );
 };
 
-export default Spinner;
+export { Spinner };
 
 const styles = StyleSheet.create({
   container: {
