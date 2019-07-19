@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput } from "components";
-import fonts from "styles/fonts";
+import { fonts } from "styles";
 
 class SignUpScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "",
+      email: "",
       password: ""
     };
   }
@@ -20,13 +20,13 @@ class SignUpScreen extends Component {
     return (
       <ScrollView contentContainerStyle={container}>
         <View>
-          <Text style={headerText}>Sign Up Here</Text>
+          <Text style={headerText}>Sign Up</Text>
         </View>
         <TextInput
           style={styles.inputStyle}
-          placeholder="Username or Email"
-          value={this.state.name}
-          onChangeText={name => this.setState({ name })}
+          placeholder="Email"
+          value={this.state.email}
+          onChangeText={email => this.setState({ email })}
           autoCorrect={false}
         />
 
@@ -37,6 +37,8 @@ class SignUpScreen extends Component {
           onChangeText={password => this.setState({ password })}
           secureTextEntry
         />
+
+        <View style={{ marginTop: 40 }} />
 
         <Button>SIGN UP</Button>
         <Text
@@ -57,12 +59,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   textStyle: {
-    ...fonts.text,
+    ...fonts.tertiary,
     marginTop: 50
   },
   headerText: {
-    ...fonts.heading,
-    marginBottom: 50,
+    fontSize: 18,
+    color: fonts.bold.color,
+    fontWeight: "400",
+    marginBottom: 40,
     fontFamily: fonts.title
   }
 });

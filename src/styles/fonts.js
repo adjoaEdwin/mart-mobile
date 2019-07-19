@@ -1,19 +1,24 @@
-import colors from "./colors";
+import { colors } from "./colors";
 
 const fonts = {
   title: "Arial",
   text: "SanFrancisco",
   code: "Fira",
-  heading: {
-    color: colors.title,
-    fontSize: 20,
-    textAlign: "center"
+  bold: {
+    color: colors.dark,
+    fontSize: 24,
+    fontWeight: "700"
   },
-  text: {
-    color: colors.text,
-    fontSize: 17,
-    textAlign: "center"
+  normal: {
+    color: colors.grey,
+    fontSize: 18,
+    fontWeight: "700"
+  },
+  tertiary: {
+    color: colors.lightGrey,
+    fontSize: 14,
+    fontWeight: "400"
   }
 };
 
-export default fonts;
+export { fonts };

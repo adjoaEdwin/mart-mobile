@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import colors from "styles/colors";
+import { colors, fonts } from "styles";
 import { Input } from "react-native-elements";
 
 const TextInput = ({
@@ -37,8 +37,9 @@ const styles = StyleSheet.create({
   inputStyle: {
     height: 40,
     color: colors.dark,
-    fontSize: 16,
-    lineHeight: 23
+    fontSize: 18,
+    lineHeight: 23,
+    borderColor: "#000"
   }
 });
 
