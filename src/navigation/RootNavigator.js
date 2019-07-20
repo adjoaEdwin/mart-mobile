@@ -76,12 +76,12 @@ const AuthStack = createStackNavigator({
   },
   Login: {
     screen: LoginNavigator,
-    navigationOptions: {}
+    navigationOptions: { header: null }
   },
   SignUp: {
     screen: SignUpScreen,
     navigationOptions: {
-      tabBarLabel: "Sign"
+      header: null
     }
   }
 });

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
+import firebase from "firebase";
 import AsyncStorage from "@react-native-community/async-storage";
-import { Button, TextInput } from "components";
+import { Button, TextInput, Spinner } from "components";
 import { fonts } from "styles";
 
 class SignUpScreen extends Component {
@@ -10,8 +11,46 @@ class SignUpScreen extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      success: "",
+      error: "",
+      isLoading: false
     };
+
+    this.signUp = this.signUp.bind(this);
+    this.onSignup = this.onSignup.bind(this);
+    this.onSignupFail = this.onSignupFail.bind(this);
+  }
+
+  signUp = () => {
+    const { email, password } = this.state;
+
+    this.setState({ error: "", isLoading: true });
+
+    //sign in with email and password
+  };
+
+  onSignupFail() {
+    this.setState({
+      error: "Authentication failed",
+      isLoading: false
+    });
+  }
+
+  onSignup() {
+    this.setState({
+      email: "",
+      password: "",
+      isLoading: false
+    });
+    return this.props.navigation.navigate("Login");
+  }
+
+  renderbutton() {
+    if (this.state.isLoading) {
+      return <Spinner />;
+    }
+    return <Button onPress={this.signUp}>SIGN UP</Button>;
   }
 
   render() {
@@ -40,7 +79,8 @@ class SignUpScreen extends Component {
 
         <View style={{ marginTop: 40 }} />
 
-        <Button>SIGN UP</Button>
+        {this.renderbutton()}
+
         <Text
           onPress={() => this.props.navigation.navigate("Login")}
           style={textStyle}
@@ -68,6 +108,11 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     marginBottom: 40,
     fontFamily: fonts.title
+  },
+  error: {
+    alignSelf: "flex-start",
+    color: "red",
+    paddingLeft: 20
   }
 });
 

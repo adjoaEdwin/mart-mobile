@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { firebase } from "firebase";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput } from "components";
 import { fonts } from "styles";
@@ -10,15 +11,17 @@ class LoginScreen extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     };
 
     this.signIn = this.signIn.bind(this);
   }
 
   signIn = async () => {
-    await AsyncStorage.setItem("userToken", "abigail");
+    const { email, password } = this.state;
 
+    await AsyncStorage.setItem("userToken", "abigail");
     this.props.navigation.navigate("App");
   };
 
@@ -56,13 +59,13 @@ class LoginScreen extends Component {
           <Text style={passwordText}>Forgot your password?</Text>
         </View>
 
-        <Button
-          onPress={() => {
-            this.signIn();
-          }}
+        <Button onPress={this.signIn}>LOG IN</Button>
+        <Text
+          onPress={() => this.props.navigation.navigate("SignUp")}
+          style={textStyle}
         >
-          LOG IN
-        </Button>
+          Don't have an account? Sign Up.
+        </Text>
       </ScrollView>
     );
   }
