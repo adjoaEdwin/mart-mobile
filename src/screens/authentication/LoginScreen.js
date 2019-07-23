@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput } from "components";
-import { fonts } from "styles";
+import { fonts, colors } from "styles";
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -58,7 +58,9 @@ class LoginScreen extends Component {
           <Text style={passwordText}>Forgot your password?</Text>
         </View>
 
-        <Button onPress={this.signIn}>LOG IN</Button>
+        <Button style={styles.buttonStyle} onPress={this.signIn}>
+          LOG IN
+        </Button>
         <Text
           onPress={() => this.props.navigation.navigate("SignUp")}
           style={textStyle}
@@ -79,6 +81,17 @@ const styles = StyleSheet.create({
   textStyle: {
     ...fonts.tertiary,
     marginTop: 50
+  },
+  buttonStyle: {
+    borderRadius: 5,
+    alignSelf: "stretch",
+    borderWidth: 1,
+    backgroundColor: colors.primary,
+    padding: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 20,
+    marginLeft: 20
   },
   passwordStyle: {
     alignSelf: "flex-start",

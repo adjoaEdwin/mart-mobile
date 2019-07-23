@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import moveToBottom from "../api/moveToBottom";
-import { Button, SecondaryBtn } from "components";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
-import { colors, fonts } from "styles";
+import moveToBottom from "../api/moveToBottom";
+import { SmallBtn } from "components";
+import { fonts } from "styles";
 
-class Receipt extends Component {
+class Products extends Component {
   state = {};
   render() {
     const {
@@ -21,23 +21,15 @@ class Receipt extends Component {
     } = styles;
 
     return (
-      <ScrollView>
-        <Card containerStyle={{ marginRight: 20, marginLeft: 20 }}>
-          <Image
-            source={require("assets/images/groundnuts.jpg")}
-            style={imageStyle}
-            accessibilityLabel="Groundnuts"
-          />
-          <View style={itemStyle}>
-            <Text style={itemTextStyle}>Groundnuts</Text>
-            <Text style={orderNumStyle}>ORD/112/C13</Text>
-          </View>
-
+      <View>
+        <Card>
           <View style={summaryContainer}>
             <View style={leftContainer}>
-              <Text style={leftItems}>Quantity</Text>
-              <Text style={leftItems}>Unit Price</Text>
-              <Text style={leftItems}>Grand Total</Text>
+              <Image
+                source={require("assets/images/groundnuts.jpg")}
+                style={imageStyle}
+                accessibilityLabel="Groundnuts"
+              />
             </View>
 
             <View>
@@ -48,7 +40,7 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  100 <Text style={{ ...fonts.tertiary }}>bags</Text>
+                  Exotic Groundnuts
                 </Text>
                 <Text
                   style={[
@@ -56,7 +48,7 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  <Text style={{ ...fonts.tertiary }}>GHC</Text> 90.00
+                  Lorem ipsum Donor item
                 </Text>
                 <Text
                   style={[
@@ -69,13 +61,10 @@ class Receipt extends Component {
               </View>
             </View>
           </View>
-        </Card>
 
-        <View style={buttonContainer}>
-          <Button>Accept</Button>
-          <SecondaryBtn>Decline</SecondaryBtn>
-        </View>
-      </ScrollView>
+          {/* {moveToBottom(<SmallBtn>Add</SmallBtn>)} */}
+        </Card>
+      </View>
     );
   }
 }
@@ -87,10 +76,10 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   imageStyle: {
-    borderRadius: 200 / 2,
+    borderRadius: 100 / 2,
     alignSelf: "center",
-    width: 200,
-    height: 200
+    width: 100,
+    height: 100
   },
   itemStyle: {
     alignItems: "center",
@@ -104,11 +93,7 @@ const styles = StyleSheet.create({
   },
   summaryContainer: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginTop: 30
-  },
-  buttonContainer: {
-    marginTop: 20
+    justifyContent: "space-evenly"
   },
   leftContainer: {
     flexDirection: "column",
@@ -123,4 +108,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { Receipt };
+export default Products;

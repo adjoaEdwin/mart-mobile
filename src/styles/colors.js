@@ -8,7 +8,8 @@ const colors = {
   dark: "#102c3c",
   black: "#000",
   grey: "#435d6b",
-  lightGrey: "#667c8a"
+  lightGrey: "#667c8a",
+  background: "#e7edf4"
 };
 
 export { colors };

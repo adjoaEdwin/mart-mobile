@@ -23,7 +23,7 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="home" color={tintColor} size={20} />
+          <Icon name="home" color={tintColor} size={25} />
         )
       }
     },
@@ -32,7 +32,7 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Products",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="menu" color={tintColor} size={20} />
+          <Icon name="menu" color={tintColor} size={25} />
         )
       }
     },
@@ -41,7 +41,7 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Orders",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="cart" color={tintColor} size={20} />
+          <Icon name="cart" color={tintColor} size={25} />
         )
       }
     },
@@ -50,7 +50,7 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Settings",
         tabBarIcon: ({ focused, tintColor }) => (
-          <Icon name="settings" color={tintColor} size={20} />
+          <Icon name="settings" color={tintColor} size={25} />
         )
       }
     }
@@ -66,10 +66,10 @@ const AppStack = createBottomTabNavigator(
     },
     tabBarOptions: {
       activeTintColor: colors.primary,
-      inactiveTintColor: colors.lightGrey
-      // style: {
-      //   backgroundColor: colors.primary
-      // }
+      inactiveTintColor: colors.lightGrey,
+      style: {
+        paddingTop: 10
+      }
     }
   },
   { headerMode: "screen" }

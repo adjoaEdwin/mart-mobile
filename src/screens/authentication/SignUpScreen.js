@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput, Spinner } from "components";
-import { fonts } from "styles";
+import { fonts, colors } from "styles";
 
 class SignUpScreen extends Component {
   constructor(props) {
@@ -49,7 +49,11 @@ class SignUpScreen extends Component {
     if (this.state.isLoading) {
       return <Spinner />;
     }
-    return <Button onPress={this.signUp}>SIGN UP</Button>;
+    return (
+      <Button style={styles.buttonStyle} onPress={this.signUp}>
+        SIGN UP
+      </Button>
+    );
   }
 
   render() {
@@ -100,6 +104,17 @@ const styles = StyleSheet.create({
   textStyle: {
     ...fonts.tertiary,
     marginTop: 50
+  },
+  buttonStyle: {
+    borderRadius: 5,
+    alignSelf: "stretch",
+    borderWidth: 1,
+    backgroundColor: colors.primary,
+    padding: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 20,
+    marginLeft: 20
   },
   headerText: {
     fontSize: 18,

@@ -11,7 +11,7 @@ class Logout extends Component {
   signOut = async () => {
     AsyncStorage.clear();
 
-    this.props.navigation.navigate("Login");
+    this.props.navigation.navigate("Welcome");
   };
 
   render() {
