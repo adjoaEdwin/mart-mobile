@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
-import firebase from "firebase";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput, Spinner } from "components";
 import { fonts } from "styles";

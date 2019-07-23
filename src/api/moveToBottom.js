@@ -7,9 +7,8 @@ function moveToBottom(component) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 2,
+    flex: 1,
     justifyContent: "flex-end",
-    alignSelf: "center",
     marginBottom: 36
   }
 });

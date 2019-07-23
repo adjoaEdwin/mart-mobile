@@ -13,14 +13,15 @@ import LoginNavigator from "screens/authentication/LoginNavigator";
 import OnBoardingScreen from "screens/onboarding/OnBoardingScreen";
 import ProductStack from "screens/products/ProductsScreen";
 import WelcomeScreen from "screens/onboarding/WelcomeScreen";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { colors } from "styles";
 
 const AppStack = createBottomTabNavigator(
   {
     Dashboard: {
       screen: DashboardStack,
       navigationOptions: {
-        tabBarLabel: "Dashboard",
+        tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
           <Icon name="home" color={tintColor} size={20} />
         )
@@ -40,7 +41,7 @@ const AppStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Orders",
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="shopping-cart" color={tintColor} size={20} />
+          <Icon name="cart" color={tintColor} size={20} />
         )
       }
     },
@@ -48,7 +49,7 @@ const AppStack = createBottomTabNavigator(
       screen: SettingStack,
       navigationOptions: {
         tabBarLabel: "Settings",
-        tabBarIcon: ({ tintColor }) => (
+        tabBarIcon: ({ focused, tintColor }) => (
           <Icon name="settings" color={tintColor} size={20} />
         )
       }
@@ -62,6 +63,13 @@ const AppStack = createBottomTabNavigator(
         headerTitle: routeName
         // resetOnBlur: true
       };
+    },
+    tabBarOptions: {
+      activeTintColor: colors.primary,
+      inactiveTintColor: colors.lightGrey
+      // style: {
+      //   backgroundColor: colors.primary
+      // }
     }
   },
   { headerMode: "screen" }

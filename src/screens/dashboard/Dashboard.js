@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { createStackNavigator } from "react-navigation";
-import Icons from "react-native-vector-icons/Ionicons";
+import { Button, Receipt } from "components";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 class DashboardScreen extends Component {
   state = {};
   render() {
     return (
       <View>
-        <Text>This is Dashboard</Text>
+        <Button onPress={() => this.props.navigation.navigate("Receipt")}>
+          click to receipt
+        </Button>
       </View>
     );
   }
@@ -19,7 +22,19 @@ const DashboardStack = createStackNavigator({
     screen: DashboardScreen,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: "Dashboard",
+        headerTitle: "MARTMOBILE",
+        headerBackTitle: null,
+        headerRight: (
+          <Icon name="seedling" size={20} style={{ paddingRight: 30 }} />
+        )
+      };
+    }
+  },
+  Receipt: {
+    screen: Receipt,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: "Order Summary",
         headerBackTitle: null
       };
     }
