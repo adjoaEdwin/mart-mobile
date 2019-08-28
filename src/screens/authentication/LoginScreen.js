@@ -31,12 +31,21 @@ class LoginScreen extends Component {
           password
         })
         .then(result => {
-          console.log(result.data.message);
           this.onSigninSuccess();
-          const { role } = result.data.user;
+
+          const { role, _id, firstName, lastName, email } = result.data.user;
           const { message } = result.data;
 
+          let userInfo = {
+            id: _id,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            role: role
+          };
+
           if (message === "User found" && role === "distributor") {
+            AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
             return this.props.navigation.navigate("App");
           } else if (!message)
             return Alert.alert("Could not log you in, try again");
