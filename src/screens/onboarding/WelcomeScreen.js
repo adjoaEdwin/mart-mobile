@@ -23,11 +23,7 @@ class WelcomeScreen extends Component {
           ]}
           onPress={() => this.props.navigation.navigate("Login")}
         >
-          <Icon
-            name="user-plus"
-            size={25}
-            style={{ backgroundColor: "#ff00ff", marginLeft: 30 }}
-          />
+          <Icon name="envelope" size={25} style={{ marginLeft: 30 }} />
           Log in with Email
         </Button>
 
@@ -37,6 +33,7 @@ class WelcomeScreen extends Component {
           style={[buttonStyle, { backgroundColor: colors.primary }]}
           onPress={() => this.props.navigation.navigate("SignUp")}
         >
+          <Icon name="user" size={25} style={{ marginLeft: 30 }} />
           Sign up
         </Button>
       </View>

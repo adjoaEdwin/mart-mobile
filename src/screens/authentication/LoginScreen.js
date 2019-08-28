@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput } from "components";
 import { fonts, colors } from "styles";
+import axios from "axios";
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -11,18 +12,48 @@ class LoginScreen extends Component {
     this.state = {
       email: "",
       password: "",
-      error: ""
+      isLoading: false
     };
-
-    this.signIn = this.signIn.bind(this);
   }
 
   signIn = async () => {
     const { email, password } = this.state;
 
-    await AsyncStorage.setItem("userToken", "abigail");
-    this.props.navigation.navigate("App");
+    this.setState({ isLoading: true });
+
+    if (!email || !password) {
+      this.onSigninSuccess();
+      return Alert.alert("An email and password is required");
+    } else {
+      await axios
+        .post("http://localhost:4500/signin", {
+          email,
+          password
+        })
+        .then(result => {
+          console.log(result.data.message);
+          this.onSigninSuccess();
+          const { role } = result.data.user;
+          const { message } = result.data;
+
+          if (message === "User found" && role === "distributor") {
+            return this.props.navigation.navigate("App");
+          } else if (!message)
+            return Alert.alert("Could not log you in, try again");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   };
+
+  onSigninSuccess() {
+    this.setState({
+      email: "",
+      password: "",
+      isLoading: false
+    });
+  }
 
   render() {
     const {
@@ -38,6 +69,7 @@ class LoginScreen extends Component {
         <View>
           <Text style={headerText}>Welcome Back!</Text>
         </View>
+
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"

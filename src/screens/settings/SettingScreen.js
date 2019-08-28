@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import LogoutScreen from "../authentication/LogoutScreen";
+import { Button } from "components";
 
 class Settings extends Component {
   constructor(props) {

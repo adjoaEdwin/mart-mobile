@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button, TextInput, Spinner } from "components";
 import { fonts, colors } from "styles";
+import axios from "axios";
 
 class SignUpScreen extends Component {
   constructor(props) {
@@ -11,38 +12,54 @@ class SignUpScreen extends Component {
     this.state = {
       email: "",
       password: "",
-      success: "",
-      error: "",
+      firstName: "",
+      lastName: "",
+      message: "",
       isLoading: false
     };
-
-    this.signUp = this.signUp.bind(this);
-    this.onSignup = this.onSignup.bind(this);
-    this.onSignupFail = this.onSignupFail.bind(this);
   }
 
-  signUp = () => {
-    const { email, password } = this.state;
+  signUp = async () => {
+    const { email, password, firstName, lastName } = this.state;
 
-    this.setState({ error: "", isLoading: true });
+    this.setState({ isLoading: true });
 
-    //sign in with email and password
+    if (!firstName || !lastName || !email || !password) {
+      this.onSignupSuccess();
+      return Alert.alert("Fill all fields");
+    } else {
+      await axios
+        .post("http://localhost:4500/signup", {
+          firstName,
+          lastName,
+          email,
+          password
+        })
+        .then(result => {
+          this.onSignupSuccess();
+
+          const { role } = result.data.user;
+          const { message } = result.data;
+
+          if (message === "User created" && role === "distributor") {
+            return this.props.navigation.navigate("App");
+          } else if (!message)
+            return Alert.alert("Could not sign you up, try again");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   };
 
-  onSignupFail() {
+  onSignupSuccess() {
     this.setState({
-      error: "Authentication failed",
-      isLoading: false
-    });
-  }
-
-  onSignup() {
-    this.setState({
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       isLoading: false
     });
-    return this.props.navigation.navigate("Login");
   }
 
   renderbutton() {
@@ -64,6 +81,23 @@ class SignUpScreen extends Component {
         <View>
           <Text style={headerText}>Sign Up</Text>
         </View>
+
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="First Name"
+          value={this.state.firstName}
+          onChangeText={firstName => this.setState({ firstName })}
+          autoCorrect={false}
+        />
+
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Last Name"
+          value={this.state.lastName}
+          onChangeText={lastName => this.setState({ lastName })}
+          autoCorrect={false}
+        />
+
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"
