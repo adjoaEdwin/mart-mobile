@@ -11,7 +11,7 @@ class AuthLoadingScreen extends Component {
   }
 
   loadApp = async () => {
-    const userToken = await AsyncStorage.getItem("userToken");
+    const userToken = await AsyncStorage.getItem("userInfo");
 
     this.props.navigation.navigate(userToken ? "App" : "Auth");
   };

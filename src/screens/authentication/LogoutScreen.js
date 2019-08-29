@@ -13,7 +13,7 @@ class Logout extends Component {
   signOut = async () => {
     AsyncStorage.clear();
 
-    this.props.navigation.navigate("Welcome");
+    this.props.navigation.navigate("Auth");
   };
 
   render() {
