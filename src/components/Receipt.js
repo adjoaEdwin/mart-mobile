@@ -14,9 +14,21 @@ class Receipt extends Component {
     super(props);
 
     this.state = {
-      orderDetails: []
+      orderDetails: [],
+      message: "",
+      isLoading: false
     };
   }
+
+  componentDidMount() {
+    this.populateOrderDetails();
+  }
+
+  populateOrderDetails = async () => {
+    const { navigation } = this.props;
+    const crop = navigation.getParam("crop");
+    const price = navigation.getParam("price");
+  };
 
   getOrderDetails = async () => {
     console.log("pressed");
@@ -27,6 +39,8 @@ class Receipt extends Component {
     const createdBy = cropId.id;
     const crop = navigation.getParam("id");
 
+    this.setState({ isLoading: true, message: "" });
+
     try {
       const order = await axios
         .post("http://localhost:4500/api/orders", {
@@ -34,7 +48,25 @@ class Receipt extends Component {
           createdBy
         })
         .then(result => {
-          this.setState({ orderDetails: result.data.data });
+          this.setState({ isLoading: false, message: result.data.message });
+
+          const { message } = this.state;
+
+          if (message === "Created successfully") {
+            return Alert.alert(
+              "Success",
+              "Your order has been placed 😊",
+              [
+                {
+                  text: "OK",
+                  onPress: () => this.props.navigation.goBack()
+                }
+              ],
+              { cancelable: false }
+            );
+            //TODO: show a screen for confirmation screen
+          }
+          return Alert.alert("Could not place order");
         });
     } catch (e) {
       console.error(e);
@@ -53,7 +85,7 @@ class Receipt extends Component {
         },
         {
           text: "OK",
-          onPress: () => this.props.navigation.navigate("Products")
+          onPress: () => this.props.navigation.goBack()
         }
       ],
       { cancelable: false }
