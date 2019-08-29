@@ -55,7 +55,7 @@ class Receipt extends Component {
           if (message === "Created successfully") {
             return Alert.alert(
               "Success",
-              "Your order has been placed 😊",
+              "Your order has been placed 🚀",
               [
                 {
                   text: "OK",
@@ -76,7 +76,7 @@ class Receipt extends Component {
   cancelOrder = async () => {
     return Alert.alert(
       "Cancel Order",
-      "Are you sure?",
+      "Are you sure? 😞",
       [
         {
           text: "Cancel",
