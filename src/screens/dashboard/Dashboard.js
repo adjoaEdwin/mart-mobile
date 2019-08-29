@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { Button, Receipt } from "components";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Products from "components/Products";
 import { colors } from "styles";
 
 class DashboardScreen extends Component {
@@ -12,12 +11,10 @@ class DashboardScreen extends Component {
     return (
       <ScrollView>
         <View>
-          <Products />
-          <Products />
-          <Products />
-          <Products />
-          <Products />
-          <Button onPress={() => this.props.navigation.navigate("Receipt")}>
+          <Button
+            style={styles.buttonStyle}
+            onPress={() => this.props.navigation.navigate("Receipt")}
+          >
             click to receipt
           </Button>
         </View>
@@ -25,6 +22,20 @@ class DashboardScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  buttonStyle: {
+    borderRadius: 5,
+    alignSelf: "stretch",
+    borderWidth: 1,
+    backgroundColor: colors.primary,
+    padding: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 20,
+    marginLeft: 20
+  }
+});
 
 const DashboardStack = createStackNavigator({
   Dashboard: {

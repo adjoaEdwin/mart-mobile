@@ -1,14 +1,39 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { ScrollView } from "react-native";
+import axios from "axios";
 import { createStackNavigator } from "react-navigation";
+import ProductScreen from "components/Products";
 
 class Products extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      crops: []
+    };
+  }
+
+  componentDidMount() {
+    this.getCrops();
+  }
+
+  getCrops = async () => {
+    try {
+      await axios
+        .get("http://localhost:4500/api/crops")
+        .then(crops => this.setState({ crops: crops.data.data }));
+    } catch (e) {
+      console.error(e);
+    }
+  };
   render() {
+    const { crops } = this.state;
     return (
-      <View>
-        <Text>This is the Products</Text>
-      </View>
+      <ScrollView>
+        {crops.map(crop => (
+          <ProductScreen crop={crop.name} price={crop.price} key={crop._id} />
+        ))}
+      </ScrollView>
     );
   }
 }

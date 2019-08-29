@@ -1,32 +1,24 @@
 import React, { Component } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
-import moveToBottom from "../api/moveToBottom";
-import { SmallBtn } from "components";
 import { fonts } from "styles";
+import { toggleImage } from "styles/images";
 
 class Products extends Component {
-  state = {};
-  render() {
-    const {
-      imageStyle,
-      itemStyle,
-      itemTextStyle,
-      orderNumStyle,
-      summaryContainer,
-      buttonContainer,
-      leftContainer,
-      leftItems,
-      rightItems
-    } = styles;
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    const { imageStyle, summaryContainer, leftContainer, rightItems } = styles;
+    const { crop, price } = this.props;
     return (
       <View>
         <Card>
           <View style={summaryContainer}>
             <View style={leftContainer}>
               <Image
-                source={require("assets/images/groundnuts.jpg")}
+                source={toggleImage(crop)}
                 style={imageStyle}
                 accessibilityLabel="Groundnuts"
               />
@@ -40,7 +32,7 @@ class Products extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  Exotic Groundnuts
+                  {crop}
                 </Text>
                 <Text
                   style={[
@@ -56,7 +48,8 @@ class Products extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  <Text style={{ ...fonts.tertiary }}>GHC</Text> 9,000.00
+                  <Text style={{ ...fonts.tertiary }}>GHC</Text>
+                  {price.toFixed(2)}
                 </Text>
               </View>
             </View>

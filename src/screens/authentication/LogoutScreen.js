@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Button } from "components";
 import { withNavigation } from "react-navigation";
-import { colors } from "../../styles/colors";
+import { colors } from "styles/colors";
 
 class Logout extends Component {
   constructor(props) {
