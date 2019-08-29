@@ -16,7 +16,10 @@ class Receipt extends Component {
     this.state = {
       orderDetails: [],
       message: "",
-      isLoading: false
+      isLoading: false,
+      crop: "",
+      price: "",
+      totalAmount: ""
     };
   }
 
@@ -27,7 +30,14 @@ class Receipt extends Component {
   populateOrderDetails = async () => {
     const { navigation } = this.props;
     const crop = navigation.getParam("crop");
-    const price = navigation.getParam("price");
+    this.setState({ crop: crop });
+    let price, amount, totalAmount, quantity, total;
+    amount = navigation.getParam("price");
+    price = JSON.parse(amount).toFixed(2);
+    quantity = 100;
+    total = quantity * price;
+    totalAmount = total.toFixed(2);
+    this.setState({ price: price, totalAmount: totalAmount });
   };
 
   getOrderDetails = async () => {
@@ -50,6 +60,7 @@ class Receipt extends Component {
         .then(result => {
           this.setState({ isLoading: false, message: result.data.message });
 
+          console.log(result);
           const { message } = this.state;
 
           if (message === "Created successfully") {
@@ -104,17 +115,18 @@ class Receipt extends Component {
       leftItems,
       rightItems
     } = styles;
+    const { crop, price, totalAmount } = this.state;
 
     return (
       <ScrollView>
         <Card containerStyle={{ marginRight: 20, marginLeft: 20 }}>
           <Image
-            source={require("assets/images/groundnuts.jpg")}
+            source={toggleImage(this.state.crop)}
             style={imageStyle}
             accessibilityLabel="Groundnuts"
           />
           <View style={itemStyle}>
-            <Text style={itemTextStyle}>Groundnuts</Text>
+            <Text style={itemTextStyle}>{crop}</Text>
             <Text style={orderNumStyle}>ORD/112/C13</Text>
           </View>
 
@@ -134,10 +146,7 @@ class Receipt extends Component {
                   ]}
                 >
                   100
-                  <Text style={{ ...fonts.tertiary }}>
-                    {/* {JSON.stringify(id)} */}
-                    bags
-                  </Text>
+                  <Text style={{ ...fonts.tertiary }}>bags</Text>
                 </Text>
                 <Text
                   style={[
@@ -145,7 +154,8 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  <Text style={{ ...fonts.tertiary }}>GHC</Text> 90.00
+                  <Text style={{ ...fonts.tertiary }}>GHC</Text>
+                  {price}
                 </Text>
                 <Text
                   style={[
@@ -153,7 +163,7 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  <Text style={{ ...fonts.tertiary }}>GHC</Text> 9,000.00
+                  <Text style={{ ...fonts.tertiary }}>GHC</Text> {totalAmount}
                 </Text>
               </View>
             </View>
