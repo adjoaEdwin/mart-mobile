@@ -45,7 +45,7 @@ class Products extends Component {
 }
 
 const ProductStack = createStackNavigator({
-  Home: {
+  Products: {
     screen: Products,
     navigationOptions: ({ navigation }) => {
       return {

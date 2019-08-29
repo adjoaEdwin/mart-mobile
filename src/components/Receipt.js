@@ -42,7 +42,22 @@ class Receipt extends Component {
   };
 
   cancelOrder = async () => {
-    return this.props.navigation.navigate("Products");
+    return Alert.alert(
+      "Cancel Order",
+      "Are you sure?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => this.props.navigation.navigate("Products")
+        }
+      ],
+      { cancelable: false }
+    );
   };
 
   render() {
@@ -117,7 +132,7 @@ class Receipt extends Component {
           <Button style={styles.buttonStyle} onPress={this.getOrderDetails}>
             Accept
           </Button>
-          <SecondaryBtn>Decline</SecondaryBtn>
+          <SecondaryBtn onPress={this.cancelOrder}>Decline</SecondaryBtn>
         </View>
       </ScrollView>
     );
