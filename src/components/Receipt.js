@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import axios from "axios";
 import { withNavigation } from "react-navigation";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -17,10 +17,6 @@ class Receipt extends Component {
       orderDetails: []
     };
   }
-
-  // componentDidMount() {
-  //   this.getOrderDetails();
-  // }
 
   getOrderDetails = async () => {
     console.log("pressed");
@@ -40,10 +36,13 @@ class Receipt extends Component {
         .then(result => {
           this.setState({ orderDetails: result.data.data });
         });
-      console.log(this.state.orderDetails);
     } catch (e) {
       console.error(e);
     }
+  };
+
+  cancelOrder = async () => {
+    return this.props.navigation.navigate("Products");
   };
 
   render() {
