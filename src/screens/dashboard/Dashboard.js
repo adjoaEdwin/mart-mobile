@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation";
-import { Button, Receipt } from "components";
+import { Button } from "components";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "styles";
 
@@ -47,15 +47,6 @@ const DashboardStack = createStackNavigator({
         headerRight: (
           <Icon name="seedling" size={20} style={{ paddingRight: 30 }} />
         )
-      };
-    }
-  },
-  Receipt: {
-    screen: Receipt,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: "Order Summary",
-        headerBackTitle: null
       };
     }
   }

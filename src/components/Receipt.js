@@ -1,12 +1,51 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import axios from "axios";
+import { withNavigation } from "react-navigation";
+import AsyncStorage from "@react-native-community/async-storage";
 import moveToBottom from "../api/moveToBottom";
 import { Button, SecondaryBtn } from "components";
 import { Card } from "react-native-elements";
-import { colors, fonts } from "styles";
+import { fonts, colors } from "styles";
+import { toggleImage } from "styles/images";
 
 class Receipt extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      orderDetails: []
+    };
+  }
+
+  // componentDidMount() {
+  //   this.getOrderDetails();
+  // }
+
+  getOrderDetails = async () => {
+    console.log("pressed");
+    const { navigation } = this.props;
+    let cropId, token;
+    token = await AsyncStorage.getItem("userInfo");
+    cropId = JSON.parse(token);
+    const createdBy = cropId.id;
+    const crop = navigation.getParam("id");
+
+    try {
+      const order = await axios
+        .post("http://localhost:4500/api/orders", {
+          crop,
+          createdBy
+        })
+        .then(result => {
+          this.setState({ orderDetails: result.data.data });
+        });
+      console.log(this.state.orderDetails);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   render() {
     const {
       imageStyle,
@@ -48,7 +87,11 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  100 <Text style={{ ...fonts.tertiary }}>bags</Text>
+                  100
+                  <Text style={{ ...fonts.tertiary }}>
+                    {/* {JSON.stringify(id)} */}
+                    bags
+                  </Text>
                 </Text>
                 <Text
                   style={[
@@ -72,7 +115,9 @@ class Receipt extends Component {
         </Card>
 
         <View style={buttonContainer}>
-          <Button>Accept</Button>
+          <Button style={styles.buttonStyle} onPress={this.getOrderDetails}>
+            Accept
+          </Button>
           <SecondaryBtn>Decline</SecondaryBtn>
         </View>
       </ScrollView>
@@ -94,7 +139,7 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     alignItems: "center",
-    marginTop: 30
+    marginTop: 10
   },
   itemTextStyle: {
     ...fonts.bold
@@ -110,6 +155,17 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 20
   },
+  buttonStyle: {
+    borderRadius: 5,
+    alignSelf: "stretch",
+    borderWidth: 1,
+    backgroundColor: colors.primary,
+    padding: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 20,
+    marginLeft: 20
+  },
   leftContainer: {
     flexDirection: "column",
     alignContent: "space-between"
@@ -123,4 +179,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { Receipt };
+export default withNavigation(Receipt);

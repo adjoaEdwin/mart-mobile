@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { colors, fonts } from "styles";
+import { colors } from "styles";
 
 const SecondaryBtn = ({ onPress, children }) => {
   const { buttonStyle, textStyle } = styles;

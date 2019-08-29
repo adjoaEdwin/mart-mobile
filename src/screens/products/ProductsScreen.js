@@ -3,6 +3,7 @@ import { ScrollView } from "react-native";
 import axios from "axios";
 import { createStackNavigator } from "react-navigation";
 import ProductScreen from "components/Products";
+import Receipt from "components/Receipt";
 
 class Products extends Component {
   constructor(props) {
@@ -31,7 +32,12 @@ class Products extends Component {
     return (
       <ScrollView>
         {crops.map(crop => (
-          <ProductScreen crop={crop.name} price={crop.price} key={crop._id} />
+          <ProductScreen
+            crop={crop.name}
+            price={crop.price}
+            key={crop._id}
+            id={crop._id}
+          />
         ))}
       </ScrollView>
     );
@@ -44,6 +50,15 @@ const ProductStack = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: "Products",
+        headerBackTitle: null
+      };
+    }
+  },
+  Receipt: {
+    screen: Receipt,
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: "Order Summary",
         headerBackTitle: null
       };
     }
