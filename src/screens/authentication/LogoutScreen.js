@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import { Button } from "components";
 import { withNavigation } from "react-navigation";
 import { colors } from "styles/colors";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class Logout extends Component {
   constructor(props) {
@@ -18,24 +18,22 @@ class Logout extends Component {
 
   render() {
     return (
-      <Button style={styles.buttonStyle} onPress={this.signOut}>
-        LOG OUT
-      </Button>
+      <TouchableOpacity onPress={this.signOut}>
+        <Text style={styles.textStyle}>
+          <Icon name="power" size={25} />
+          &nbsp;&nbsp;&nbsp;Log Out
+        </Text>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  buttonStyle: {
-    borderRadius: 5,
-    alignSelf: "stretch",
-    borderWidth: 1,
-    backgroundColor: colors.primary,
+  textStyle: {
+    color: colors.lightGrey,
+    fontSize: 16,
     padding: 20,
-    marginTop: 5,
-    marginBottom: 5,
-    marginRight: 20,
-    marginLeft: 20
+    backgroundColor: "#F5F5F5"
   }
 });
 

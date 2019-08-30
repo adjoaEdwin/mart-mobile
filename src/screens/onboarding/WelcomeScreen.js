@@ -7,14 +7,15 @@ import { fonts, colors } from "styles";
 class WelcomeScreen extends Component {
   state = {};
   render() {
-    const { spacer, container, textStyle, buttonStyle, iconContainer } = styles;
+    const { spacer, container, textStyle, buttonStyle } = styles;
 
     return (
       <View style={container}>
-        <View style={iconContainer}>
+        <View>
           <Icon name="seedling" size={50} style={{ textAlign: "center" }} />
           <Text style={textStyle}>martmobile</Text>
         </View>
+        <View style={spacer} />
 
         <Button
           style={[
@@ -23,8 +24,8 @@ class WelcomeScreen extends Component {
           ]}
           onPress={() => this.props.navigation.navigate("Login")}
         >
-          <Icon name="envelope" size={25} style={{ marginLeft: 30 }} />
-          Log in with Email
+          <Icon name="envelope" size={25} />
+          &nbsp;&nbsp;&nbsp;Log in with Email
         </Button>
 
         <View style={spacer} />
@@ -33,8 +34,8 @@ class WelcomeScreen extends Component {
           style={[buttonStyle, { backgroundColor: colors.primary }]}
           onPress={() => this.props.navigation.navigate("SignUp")}
         >
-          <Icon name="user" size={25} style={{ marginLeft: 30 }} />
-          Sign up
+          <Icon name="user" size={25} />
+          &nbsp;&nbsp;&nbsp;Sign up With Email
         </Button>
       </View>
     );
@@ -46,9 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-  },
-  iconContainer: {
-    marginBottom: 100
   },
   buttonStyle: {
     borderRadius: 5,

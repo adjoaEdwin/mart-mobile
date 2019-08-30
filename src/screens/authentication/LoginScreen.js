@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import { Button, TextInput } from "components";
+import { Button, TextInput, Spinner } from "components";
 import { fonts, colors } from "styles";
 import axios from "axios";
 
@@ -65,6 +65,17 @@ class LoginScreen extends Component {
     });
   }
 
+  renderbutton() {
+    if (this.state.isLoading) {
+      return <Spinner />;
+    }
+    return (
+      <Button style={styles.buttonStyle} onPress={this.signIn}>
+        LOG IN
+      </Button>
+    );
+  }
+
   render() {
     const {
       container,
@@ -100,9 +111,8 @@ class LoginScreen extends Component {
           <Text style={passwordText}>Forgot your password?</Text>
         </View>
 
-        <Button style={styles.buttonStyle} onPress={this.signIn}>
-          LOG IN
-        </Button>
+        {this.renderbutton()}
+
         <Text
           onPress={() => this.props.navigation.navigate("SignUp")}
           style={textStyle}

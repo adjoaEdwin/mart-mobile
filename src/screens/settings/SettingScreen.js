@@ -1,18 +1,51 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SectionList, Alert } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import LogoutScreen from "../authentication/LogoutScreen";
-import { Button } from "components";
+import { sections } from "../../api/sectionItems";
+import { ListItem } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { colors } from "styles";
 
 class Settings extends Component {
   constructor(props) {
     super(props);
   }
 
+  getSectionListItem = item => {
+    Alert.alert(item);
+  };
+
   render() {
+    const { sectionHeaderStyle } = styles;
     return (
-      <View style={styles.container}>
-        <Text>This is the Settings</Text>
+      <View>
+        <SectionList
+          sections={sections}
+          renderSectionHeader={({ section }) => (
+            <Text style={sectionHeaderStyle}> </Text>
+          )}
+          renderItem={({ item }) => (
+            <ListItem
+              key={item}
+              bottomDivider
+              onPress={this.getSectionListItem.bind(this, item)}
+              title={item}
+              titleStyle={{ color: colors.lightGrey }}
+              leftIcon={
+                <Icon
+                  name="airplane-takeoff"
+                  size={25}
+                  color={colors.lightGrey}
+                />
+              }
+              rightIcon={
+                <Icon name="chevron-right" size={25} color={colors.lightGrey} />
+              }
+            />
+          )}
+          keyExtractor={(item, index) => index}
+        />
         <LogoutScreen />
       </View>
     );
@@ -20,10 +53,10 @@ class Settings extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+  sectionHeaderStyle: {
+    backgroundColor: "#F5F5F5",
+    fontSize: 20,
+    padding: 10
   }
 });
 
