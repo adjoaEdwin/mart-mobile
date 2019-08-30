@@ -11,11 +11,17 @@ class Products extends Component {
   }
 
   render() {
-    const { imageStyle, summaryContainer, leftContainer, rightItems } = styles;
+    const {
+      imageStyle,
+      summaryContainer,
+      leftContainer,
+      rightItems,
+      container
+    } = styles;
     const { crop, price, id } = this.props;
     const { push } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={container}>
         <TouchableOpacity onPress={() => push("Receipt", { crop, price, id })}>
           <Card>
             <View style={summaryContainer}>
@@ -79,12 +85,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 30
   },
-  itemTextStyle: {
-    ...fonts.bold
-  },
-  orderNumStyle: {
-    ...fonts.tertiary
-  },
   summaryContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly"
@@ -92,10 +92,6 @@ const styles = StyleSheet.create({
   leftContainer: {
     flexDirection: "column",
     alignContent: "space-between"
-  },
-  leftItems: {
-    marginBottom: 20,
-    textAlign: "right"
   },
   rightItems: {
     marginBottom: 20

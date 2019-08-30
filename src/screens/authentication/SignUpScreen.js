@@ -74,7 +74,7 @@ class SignUpScreen extends Component {
   }
 
   render() {
-    const { container, textStyle, headerText } = styles;
+    const { container, textStyle, headerText, inputStyle } = styles;
 
     return (
       <ScrollView contentContainerStyle={container}>
@@ -83,7 +83,7 @@ class SignUpScreen extends Component {
         </View>
 
         <TextInput
-          style={styles.inputStyle}
+          style={inputStyle}
           placeholder="First Name"
           value={this.state.firstName}
           onChangeText={firstName => this.setState({ firstName })}
@@ -91,7 +91,7 @@ class SignUpScreen extends Component {
         />
 
         <TextInput
-          style={styles.inputStyle}
+          style={inputStyle}
           placeholder="Last Name"
           value={this.state.lastName}
           onChangeText={lastName => this.setState({ lastName })}
@@ -99,7 +99,7 @@ class SignUpScreen extends Component {
         />
 
         <TextInput
-          style={styles.inputStyle}
+          style={inputStyle}
           placeholder="Email"
           value={this.state.email}
           onChangeText={email => this.setState({ email })}
@@ -107,7 +107,7 @@ class SignUpScreen extends Component {
         />
 
         <TextInput
-          style={styles.inputStyle}
+          style={inputStyle}
           placeholder="Password"
           value={this.state.password}
           onChangeText={password => this.setState({ password })}
@@ -156,11 +156,6 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     marginBottom: 40,
     fontFamily: fonts.title
-  },
-  error: {
-    alignSelf: "flex-start",
-    color: "red",
-    paddingLeft: 20
   }
 });
 

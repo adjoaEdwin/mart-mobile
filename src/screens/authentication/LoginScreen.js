@@ -82,7 +82,8 @@ class LoginScreen extends Component {
       textStyle,
       headerText,
       passwordStyle,
-      passwordText
+      passwordText,
+      inputStyle
     } = styles;
 
     return (
@@ -92,7 +93,7 @@ class LoginScreen extends Component {
         </View>
 
         <TextInput
-          style={styles.inputStyle}
+          style={inputStyle}
           placeholder="Email"
           value={this.state.email}
           onChangeText={email => this.setState({ email })}
@@ -100,7 +101,7 @@ class LoginScreen extends Component {
         />
 
         <TextInput
-          style={styles.inputStyle}
+          style={inputStyle}
           placeholder="Password"
           value={this.state.password}
           onChangeText={password => this.setState({ password })}

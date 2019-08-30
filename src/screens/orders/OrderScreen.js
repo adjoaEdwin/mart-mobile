@@ -33,11 +33,9 @@ class Orders extends Component {
     const { id } = this.state;
 
     try {
-      const response = await axios
-        .get(`http://localhost:4500/api/orders/${id}`)
-        .then(result => {
-          this.setState({ orders: result.data.data });
-        });
+      await axios.get(`http://localhost:4500/api/orders/${id}`).then(result => {
+        this.setState({ orders: result.data.data });
+      });
     } catch (e) {
       console.error(e);
     }

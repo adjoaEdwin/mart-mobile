@@ -17,9 +17,9 @@ class Settings extends Component {
   };
 
   render() {
-    const { sectionHeaderStyle } = styles;
+    const { sectionHeaderStyle, container } = styles;
     return (
-      <View style={styles.container}>
+      <View style={container}>
         <SectionList
           sections={sections}
           renderSectionHeader={({ section }) => (
