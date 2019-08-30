@@ -32,8 +32,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: colors.lightGrey,
     fontSize: 16,
-    padding: 20,
-    backgroundColor: "#F5F5F5"
+    padding: 20
   }
 });
 

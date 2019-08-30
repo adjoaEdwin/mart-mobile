@@ -46,7 +46,7 @@ class Orders extends Component {
   render() {
     const { orders } = this.state;
     return (
-      <View>
+      <View style={{ flex: 1, backgroundColor: colors.background }}>
         {orders.map((order, i) => (
           <ListItem
             key={i}

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text, Button } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Card } from "react-native-elements";
-import { fonts } from "styles";
+import { fonts, colors } from "styles";
 
 class DashboardScreen extends Component {
   render() {
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
         <Card containerStyle={styles.cardContainer}>
           <Text style={styles.titleStyle}>GHS 6.7K</Text>
           <Text style={styles.subtitleStyle}>Total Sales</Text>
@@ -35,6 +35,10 @@ class DashboardScreen extends Component {
 const styles = StyleSheet.create({
   cardContainer: {
     marginBottom: 10
+  },
+  container: {
+    backgroundColor: colors.background,
+    flex: 1
   },
   titleStyle: {
     ...fonts.bold,

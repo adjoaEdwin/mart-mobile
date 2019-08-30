@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Card } from "react-native-elements";
-import { fonts } from "styles";
+import { fonts, colors } from "styles";
 import { toggleImage } from "styles/images";
 import { withNavigation } from "react-navigation";
 
@@ -15,7 +15,7 @@ class Products extends Component {
     const { crop, price, id } = this.props;
     const { push } = this.props.navigation;
     return (
-      <View>
+      <View style={styles.container}>
         <TouchableOpacity onPress={() => push("Receipt", { crop, price, id })}>
           <Card>
             <View style={summaryContainer}>
@@ -67,8 +67,7 @@ class Products extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    backgroundColor: colors.background
   },
   imageStyle: {
     borderRadius: 100 / 2,

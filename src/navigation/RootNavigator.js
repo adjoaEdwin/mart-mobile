@@ -15,6 +15,7 @@ import ProductStack from "screens/products/ProductsScreen";
 import WelcomeScreen from "screens/onboarding/WelcomeScreen";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { colors } from "styles";
+import { StyleSheet } from "react-native";
 
 const AppStack = createBottomTabNavigator(
   {

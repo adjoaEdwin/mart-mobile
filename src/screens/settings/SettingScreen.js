@@ -19,7 +19,7 @@ class Settings extends Component {
   render() {
     const { sectionHeaderStyle } = styles;
     return (
-      <View>
+      <View style={styles.container}>
         <SectionList
           sections={sections}
           renderSectionHeader={({ section }) => (
@@ -54,9 +54,12 @@ class Settings extends Component {
 
 const styles = StyleSheet.create({
   sectionHeaderStyle: {
-    backgroundColor: "#F5F5F5",
     fontSize: 20,
     padding: 10
+  },
+  container: {
+    backgroundColor: colors.background,
+    flex: 1
   }
 });
 
