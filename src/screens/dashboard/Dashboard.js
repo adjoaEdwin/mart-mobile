@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation";
-import { Button } from "components";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "styles";
 
@@ -10,14 +9,7 @@ class DashboardScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <View>
-          <Button
-            style={styles.buttonStyle}
-            onPress={() => this.props.navigation.navigate("Receipt")}
-          >
-            click to receipt
-          </Button>
-        </View>
+        <View />
       </ScrollView>
     );
   }

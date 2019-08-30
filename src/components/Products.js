@@ -13,7 +13,7 @@ class Products extends Component {
   render() {
     const { imageStyle, summaryContainer, leftContainer, rightItems } = styles;
     const { crop, price, id } = this.props;
-    const { navigate, push } = this.props.navigation;
+    const { push } = this.props.navigation;
     return (
       <View>
         <TouchableOpacity onPress={() => push("Receipt", { crop, price, id })}>
@@ -51,14 +51,12 @@ class Products extends Component {
                       { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                     ]}
                   >
-                    <Text style={{ ...fonts.tertiary }}>GHC</Text>
+                    <Text style={{ ...fonts.tertiary }}>GHS&nbsp;</Text>
                     {price.toFixed(2)}
                   </Text>
                 </View>
               </View>
             </View>
-
-            {/* {moveToBottom(<SmallBtn>Add</SmallBtn>)} */}
           </Card>
         </TouchableOpacity>
       </View>

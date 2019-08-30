@@ -146,7 +146,7 @@ class Receipt extends Component {
                   ]}
                 >
                   100
-                  <Text style={{ ...fonts.tertiary }}>bags</Text>
+                  <Text style={{ ...fonts.tertiary }}> &nbsp;bags</Text>
                 </Text>
                 <Text
                   style={[
@@ -154,7 +154,7 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  <Text style={{ ...fonts.tertiary }}>GHC</Text>
+                  <Text style={{ ...fonts.tertiary }}>GHS&nbsp;</Text>
                   {price}
                 </Text>
                 <Text
@@ -163,7 +163,8 @@ class Receipt extends Component {
                     { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
                   ]}
                 >
-                  <Text style={{ ...fonts.tertiary }}>GHC</Text> {totalAmount}
+                  <Text style={{ ...fonts.tertiary }}>GHS&nbsp;</Text>{" "}
+                  {totalAmount}
                 </Text>
               </View>
             </View>

@@ -51,7 +51,8 @@ class LoginScreen extends Component {
             return Alert.alert("Could not log you in, try again");
         })
         .catch(e => {
-          console.log(e);
+          this.onSigninSuccess();
+          return Alert.alert("Invalid login details");
         });
     }
   };
