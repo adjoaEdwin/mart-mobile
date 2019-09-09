@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import MainAppContainer from "./navigation/RootNavigator";
+import ThemeContext from "./context/ThemeContext";
 
 class App extends Component {
   constructor(props) {
@@ -8,9 +9,11 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <MainAppContainer />
-      </Fragment>
+      <ThemeContext.Provider value="#F4F4F4">
+        <Fragment>
+          <MainAppContainer />
+        </Fragment>
+      </ThemeContext.Provider>
     );
   }
 }

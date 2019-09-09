@@ -4,6 +4,7 @@ import { Card } from "react-native-elements";
 import { fonts, colors } from "styles";
 import { toggleImage } from "styles/images";
 import { withNavigation } from "react-navigation";
+import ThemeContext from "../context/ThemeContext";
 
 class Products extends Component {
   constructor(props) {
@@ -21,59 +22,64 @@ class Products extends Component {
     const { crop, price, id } = this.props;
     const { push } = this.props.navigation;
     return (
-      <View style={container}>
-        <TouchableOpacity onPress={() => push("Receipt", { crop, price, id })}>
-          <Card>
-            <View style={summaryContainer}>
-              <View style={leftContainer}>
-                <Image
-                  source={toggleImage(crop)}
-                  style={imageStyle}
-                  accessibilityLabel="Groundnuts"
-                />
-              </View>
+      <ThemeContext.Consumer>
+        {value => (
+          <View style={(container, { backgroundColor: value })}>
+            <TouchableOpacity
+              onPress={() => push("Receipt", { crop, price, id })}
+            >
+              <Card>
+                <View style={summaryContainer}>
+                  <View style={leftContainer}>
+                    <Image
+                      source={toggleImage(crop)}
+                      style={imageStyle}
+                      accessibilityLabel="Groundnuts"
+                    />
+                  </View>
 
-              <View>
-                <View style={leftContainer}>
-                  <Text
-                    style={[
-                      rightItems,
-                      { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
-                    ]}
-                  >
-                    {crop}
-                  </Text>
-                  <Text
-                    style={[
-                      rightItems,
-                      { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
-                    ]}
-                  >
-                    Lorem ipsum Donor item
-                  </Text>
-                  <Text
-                    style={[
-                      rightItems,
-                      { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
-                    ]}
-                  >
-                    <Text style={{ ...fonts.tertiary }}>GHS&nbsp;</Text>
-                    {price.toFixed(2)}
-                  </Text>
+                  <View>
+                    <View style={leftContainer}>
+                      <Text
+                        style={[
+                          rightItems,
+                          { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
+                        ]}
+                      >
+                        {crop}
+                      </Text>
+                      <Text
+                        style={[
+                          rightItems,
+                          { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
+                        ]}
+                      >
+                        Lorem ipsum Donor item
+                      </Text>
+                      <Text
+                        style={[
+                          rightItems,
+                          { ...fonts.bold, fontSize: fonts.tertiary.fontSize }
+                        ]}
+                      >
+                        <Text style={{ ...fonts.tertiary }}>GHS&nbsp;</Text>
+                        {price.toFixed(2)}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-              </View>
-            </View>
-          </Card>
-        </TouchableOpacity>
-      </View>
+              </Card>
+            </TouchableOpacity>
+          </View>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: colors.background
+    flex: 1
   },
   imageStyle: {
     borderRadius: 100 / 2,

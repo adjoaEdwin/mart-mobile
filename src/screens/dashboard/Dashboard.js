@@ -4,40 +4,50 @@ import { createStackNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Card } from "react-native-elements";
 import { fonts, colors } from "styles";
+import ThemeContext from "../../context/ThemeContext";
 
 class DashboardScreen extends Component {
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <Card containerStyle={styles.cardContainer}>
-          <Text style={styles.titleStyle}>GHS 6.7K</Text>
-          <Text style={styles.subtitleStyle}>Total Sales</Text>
-        </Card>
-        <Card containerStyle={styles.cardContainer}>
-          <Text style={styles.titleStyle}>7</Text>
-          <Text style={styles.subtitleStyle}>Orders Placed</Text>
-        </Card>
+      <ThemeContext.Consumer>
+        {value => (
+          <ScrollView
+            contentContainerStyle={[
+              styles.container,
+              { backgroundColor: value }
+            ]}
+          >
+            <Card containerStyle={styles.cardContainer}>
+              <Text style={styles.titleStyle}>GHS 6.7K</Text>
+              <Text style={styles.subtitleStyle}>Total Sales</Text>
+            </Card>
+            <Card containerStyle={styles.cardContainer}>
+              <Text style={styles.titleStyle}>7</Text>
+              <Text style={styles.subtitleStyle}>Orders Placed</Text>
+            </Card>
 
-        <Card containerStyle={styles.cardContainer}>
-          <Text style={styles.titleStyle}>2500</Text>
-          <Text style={styles.subtitleStyle}>Bags Purchased</Text>
-        </Card>
+            <Card containerStyle={styles.cardContainer}>
+              <Text style={styles.titleStyle}>2500</Text>
+              <Text style={styles.subtitleStyle}>Bags Purchased</Text>
+            </Card>
 
-        <Card containerStyle={styles.cardContainer}>
-          <Text style={styles.titleStyle}>25</Text>
-          <Text style={styles.subtitleStyle}>Commodities Traded</Text>
-        </Card>
-      </ScrollView>
+            <Card containerStyle={styles.cardContainer}>
+              <Text style={styles.titleStyle}>25</Text>
+              <Text style={styles.subtitleStyle}>Commodities Traded</Text>
+            </Card>
+          </ScrollView>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginBottom: 10
+    marginBottom: 10,
+    marginTop: 30
   },
   container: {
-    backgroundColor: colors.background,
     flex: 1
   },
   titleStyle: {

@@ -6,6 +6,7 @@ import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 import { toggleImage } from "styles/images";
 import { colors } from "styles";
+import ThemeContext from "../../context/ThemeContext";
 
 class Orders extends Component {
   constructor(props) {
@@ -44,31 +45,35 @@ class Orders extends Component {
   render() {
     const { orders } = this.state;
     return (
-      <View style={{ flex: 1, backgroundColor: colors.background }}>
-        {orders.map((order, i) => (
-          <ListItem
-            key={i}
-            leftAvatar={{ source: toggleImage(order.crop.name) }}
-            rightTitle={
-              <Text>
-                GHS&nbsp;<Text>{order.crop.price.toFixed(2)}</Text>
-              </Text>
-            }
-            rightSubtitle={order.orderStatus}
-            rightSubtitleStyle={{
-              color: "#ECC94B",
-              textTransform: "capitalize"
-            }}
-            title={order.crop.name}
-            subtitle={
-              <Text style={{ color: colors.lightGrey }}>
-                {order.quantity} bags of {order.crop.name}
-              </Text>
-            }
-            bottomDivider
-          />
-        ))}
-      </View>
+      <ThemeContext.Consumer>
+        {value => (
+          <View style={{ flex: 1, backgroundColor: value }}>
+            {orders.map((order, i) => (
+              <ListItem
+                key={i}
+                leftAvatar={{ source: toggleImage(order.crop.name) }}
+                rightTitle={
+                  <Text>
+                    GHS&nbsp;<Text>{order.crop.price.toFixed(2)}</Text>
+                  </Text>
+                }
+                rightSubtitle={order.orderStatus}
+                rightSubtitleStyle={{
+                  color: "#ECC94B",
+                  textTransform: "capitalize"
+                }}
+                title={order.crop.name}
+                subtitle={
+                  <Text style={{ color: colors.lightGrey }}>
+                    {order.quantity} bags of {order.crop.name}
+                  </Text>
+                }
+                bottomDivider
+              />
+            ))}
+          </View>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

@@ -6,6 +6,7 @@ import { sections } from "../../api/sectionItems";
 import { ListItem } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { colors } from "styles";
+import ThemeContext from "../../context/ThemeContext";
 
 class Settings extends Component {
   constructor(props) {
@@ -19,35 +20,43 @@ class Settings extends Component {
   render() {
     const { sectionHeaderStyle, container } = styles;
     return (
-      <View style={container}>
-        <SectionList
-          sections={sections}
-          renderSectionHeader={({ section }) => (
-            <Text style={sectionHeaderStyle}> </Text>
-          )}
-          renderItem={({ item }) => (
-            <ListItem
-              key={item}
-              bottomDivider
-              onPress={this.getSectionListItem.bind(this, item)}
-              title={item}
-              titleStyle={{ color: colors.lightGrey }}
-              leftIcon={
-                <Icon
-                  name="airplane-takeoff"
-                  size={25}
-                  color={colors.lightGrey}
+      <ThemeContext.Consumer>
+        {value => (
+          <View style={(container, { backgroundColor: value })}>
+            <SectionList
+              sections={sections}
+              renderSectionHeader={({ section }) => (
+                <Text style={sectionHeaderStyle}> </Text>
+              )}
+              renderItem={({ item }) => (
+                <ListItem
+                  key={item}
+                  bottomDivider
+                  onPress={this.getSectionListItem.bind(this, item)}
+                  title={item}
+                  titleStyle={{ color: colors.lightGrey }}
+                  leftIcon={
+                    <Icon
+                      name="airplane-takeoff"
+                      size={25}
+                      color={colors.lightGrey}
+                    />
+                  }
+                  rightIcon={
+                    <Icon
+                      name="chevron-right"
+                      size={25}
+                      color={colors.lightGrey}
+                    />
+                  }
                 />
-              }
-              rightIcon={
-                <Icon name="chevron-right" size={25} color={colors.lightGrey} />
-              }
+              )}
+              keyExtractor={(item, index) => index}
             />
-          )}
-          keyExtractor={(item, index) => index}
-        />
-        <LogoutScreen />
-      </View>
+            <LogoutScreen />
+          </View>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
@@ -58,7 +67,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   container: {
-    backgroundColor: colors.background,
+    // backgroundColor: colors.background,
     flex: 1
   }
 });
